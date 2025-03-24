@@ -70,10 +70,10 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- 03. Searching -->
-                        <form id="todo-form" action="" method="get">
+                        <form id="todo-form" action="{{ route('todo') }}" method="get">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="search" value=""
-                                    placeholder="masukkan kata kunci">
+                                <input type="text" class="form-control" name="search"
+                                    value="{{ request('search') }}" placeholder="Input Keyword">
                                 <button class="btn btn-secondary" type="submit">
                                     Cari
                                 </button>
@@ -92,7 +92,12 @@
                                     <input type="text" class="form-control edit-input" style="display: none;"
                                         value="{{ $data->task }}">
                                     <div class="btn-group">
-                                        <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                        <form action="{{ route('todo.delete', ['id' => $data->id]) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus data ini ?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                        </form>
                                         <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
                                             data-bs-target="#collapse-{{ $loop->index }}"
                                             aria-expanded="false">✎</button>
@@ -128,7 +133,7 @@
                                 </li>
                             @endforeach
                         </ul>
-
+                        {{ $datas->links() }}
 
                     </div>
                 </div>
