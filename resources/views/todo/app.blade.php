@@ -84,7 +84,11 @@
                             @foreach ($datas as $data)
                                 <!-- 04. Display Data -->
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span class="task-text">{{ $data->task }}</span>
+                                    <span class="task-text">
+                                        {!! $data->is_done == '1' ? '<del>' : '' !!}
+                                        {{ $data->task }}
+                                        {!! $data->is_done == '1' ? '</del>' : '' !!}
+                                    </span>
                                     <input type="text" class="form-control edit-input" style="display: none;"
                                         value="{{ $data->task }}">
                                     <div class="btn-group">
