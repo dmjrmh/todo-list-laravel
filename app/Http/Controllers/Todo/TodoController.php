@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Todo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -38,6 +39,13 @@ class TodoController extends Controller
             'task.min' => 'Task minimal 3 karakter',
             'task.max' => 'Task maximal 25 karakter',
         ]);
+
+        $data = [
+            'task' => $request->input('task')
+        ];
+
+        Todo::create($data);
+        return redirect('/todo')->with('success', 'Task successfully created');
     }
 
     /**
