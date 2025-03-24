@@ -20,3 +20,4 @@ Route::get('/halo', [HaloController::class, 'index']);
 
 Route::get('/todo', [TodoController::class, 'index'])->name('todo');
 Route::post('/todo', [TodoController::class, 'store'])->name('todo.post');
+Route::patch('/todo/{id}', [TodoController::class, 'update'])->name('todo.update');
